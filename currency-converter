@@ -1,0 +1,23 @@
+import urllib.request, json
+have = input()
+dct_currency = {}
+with urllib.request.urlopen(f"http://www.floatrates.com/daily/{have}.json") as url:
+    data = json.loads(url.read().decode())
+    if have != 'usd':
+        dct_currency['usd'] = float(data['usd']['rate'])
+    if have != 'eur':
+        dct_currency['eur'] = float(data['eur']['rate'])
+    while True:
+        want = input().lower()
+        if want == "":
+            break
+        amount = float(input())
+        print("Checking the cache...")
+        want_rate = float(data[want]['rate'])
+        if want in dct_currency.keys():
+            print("Oh! It is in the cache!")
+        else:
+            print("Sorry, but it is not in the cache!")
+            dct_currency[want] = want_rate
+        receive = round(want_rate*amount,2)
+        print(f"You received {receive} {want.upper()}.")
