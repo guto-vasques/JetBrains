@@ -1,0 +1,37 @@
+# write your code here
+import random
+
+count = 0
+friends = {}
+
+n = int(input("Enter the number of friends joining (including you):"))
+print()
+if n > 0:
+    print("Enter the name of every friend (including you), each on a new line:")
+    while count < n:
+        name = input()
+        friends[name] = 0
+        count += 1
+    print("Enter the total bill value:")
+    total = int(input())
+
+    print('Do you want to use the "Who is lucky?" feature? Write Yes/No:')
+    lucky = str(input())
+    print()
+    if lucky == 'Yes':
+        luck = random.choice(list(friends.keys()))
+        print(f"{luck} is the lucky one!")
+        each = round(total /(n-1), 2)
+        for i in friends:
+            friends[i] = each
+        friends[luck] = 0
+    else:
+        print("No one is going to be lucky")
+        print()
+        each = round(total / n, 2)
+        for i in friends:
+            friends[i] = each
+    print(friends)
+else:
+    print("No one is joining for the party")
+
