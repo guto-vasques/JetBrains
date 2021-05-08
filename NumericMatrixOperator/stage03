@@ -1,0 +1,53 @@
+matrix = True
+
+while matrix is True:
+    choice = int(input("""1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: """))
+    if choice == 0:
+        matrix = False
+
+    if choice == 1:
+        print("Enter size of first matrix: ")
+        n, m = (int(x) for x in input().split())
+        print("Enter first matrix:")
+        a = [[float(x) for x in input().split()] for i in range(n)]
+        print("Enter size of second matrix: ")
+        p, q = (int(x) for x in input().split())
+        print("Enter second matrix:")
+        b = [[float(x) for x in input().split()] for i in range(p)]
+        if n == p and m == q:
+            r = [[a[i][j] + b[i][j] for j in range(m)] for i in range(n)]
+            print("The result is:")
+            print("\n".join(" ".join(str(x) for x in row) for row in r))
+        else:
+            print("The operation cannot be performed.")
+    if choice == 2:
+        print("Enter size of first matrix: ")
+        n, m = (int(x) for x in input().split())
+        print("Enter matrix:")
+        a = [[float(x) for x in input().split()] for i in range(n)]
+        k = float(input("Enter constant:"))
+        r = [[a[i][j] * k for j in range(m)] for i in range(n)]
+        print("The result is: \n")
+        print("\n".join(" ".join(str(x) for x in row) for row in r))
+    if choice == 3:
+        print("Enter size of first matrix: ")
+        n, m = (int(x) for x in input().split())
+        print("Enter first matrix:")
+        a = [[float(x) for x in input().split()] for i in range(n)]
+        print("Enter size of second matrix: ")
+        p, q = (int(x) for x in input().split())
+        print("Enter second matrix:")
+        b = [[float(x) for x in input().split()] for i in range(p)]
+        if m == p:
+            print("The result is:")
+            result = [[sum(i * j for i, j in zip(n, q))
+                       for q in zip(*b)]
+                      for n in a]
+            print("\n".join(" ".join(str(x) for x in row) for row in result))
+        else:
+            print("The operation cannot be performed.")
+
